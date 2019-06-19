@@ -12,14 +12,16 @@ pipenv shell
 ```
 pipenv install python-dotenv
 ```
-#install essential libraries
+### install essential libraries
 ```
 pipenv install sklearn
 pipenv install quandl
 pipenv install pandas
-```
 
-### Run the program
+```
+#### and others - detaials in Profile - adventage of pipenv
+
+### Run the program and have fun
 ```
 pipenv run <name>
 ```
