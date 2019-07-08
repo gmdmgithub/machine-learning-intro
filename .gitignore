@@ -1,4 +1,6 @@
 *.exe
 .env
+*.png
 .vscode
+.vscode\
 Pipfile.lock

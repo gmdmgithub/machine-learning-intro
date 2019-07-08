@@ -14,6 +14,7 @@ pipenv install python-dotenv
 ```
 ### install essential libraries
 ```
+pipenv install matplotlib
 pipenv install sklearn
 pipenv install quandl
 pipenv install pandas
