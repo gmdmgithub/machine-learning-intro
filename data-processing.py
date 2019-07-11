@@ -43,17 +43,32 @@ def simpleReaderArray():
     print(X)
     print(y)
 
-    
-    # ct = ColumnTransformer(
-    #         [('ohe', OneHotEncoder(), [0])],      # use [] around the transformer to give the 3 attributes to the transformer
-    #                                                 # name = 'ohe', transformer = OneHotEncoder(), [0] = first column
-    #         remainder = 'passthrough')            # passes the rest of the columns through untouched
-    # X = np.array(ct.fit_transform(X), dtype = np.float) # make the first column of X = the transformed column
-
+    # First we change labels (string names into the numbers)
     from sklearn.preprocessing import LabelEncoder
     labelencoder_X = LabelEncoder()
     X[:,0] = labelencoder_X.fit_transform(X[:,0])
     print(X)
+
+    #then we introduce as many columns as many label was in first operation
+    from sklearn.preprocessing import OneHotEncoder
+    # onehotencoder = OneHotEncoder(categorical_features=[0])#category is in first row
+    # X= onehotencoder.fit_transform(X).toarray()
+    #above is depricated 
+    onehotencoder = OneHotEncoder(categories='auto')
+    X = np.concatenate((onehotencoder.fit_transform(X[:,0].reshape(-1,1)).toarray(),X[:,1:3]), axis=1)
+
+    # The same possible with column transform
+    # ct = ColumnTransformer(
+    #     [("one_hot_encoder", OneHotEncoder(), [0])],
+    #     remainder='passthrough'
+    # )
+    # ct.fit_transform(X)
+    # X = np.array(ct.fit_transform(X))
+    print(X)
+        
+    labelencoder_y = LabelEncoder()
+    y = labelencoder_y.fit_transform(y)
+    print(y)
 
 
 def main():
